@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive movie Website</title>
+    <!--link to css-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--link swipper css-->
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <!--fav icon-->
+    <link rel="shortcut icon" href="img/fav-icon.png" type="image/x-icon">
+    <!--Box icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+
+<body>
+    <!-- header -->
+    <header>
+        <!-- Add to header -->
+        <!-- Nav-->
+        <div class="nav container">
+            <!--logo-->
+            <a href="index.html" class="logo">
+                Movie<span style="color: #ffb43a;">nation</span>
+            </a>
+            <!-- Search Box-->
+            <div class="search-box">
+                <input type="search" name="" id="search-input" placeholder="Search Movie">
+                <i class='bx bx-search'></i>
+            </div>
+            <!-- User -->
+            <a href="#" class="user">
+                <img src="img/fav-icon.png" alt="" class="user-img">
+            </a>
+            <!-- NavBar-->
+            <div class="navbar">
+                <a href="index.html" class="navbar-link nav-active">
+                    <i class='bx bx-home'></i>
+                    <span class="nav-link-title">Home</span>
+                </a>
+                <a href="popular.html" class="navbar-link">
+                    <i class='bx bxs-hot'></i>
+                    <span class="nav-link-title">Trending</span>
+                </a>
+                <a href="explore.html" class="navbar-link">
+                    <i class='bx bx-compass'></i>
+                    <span class="nav-link-title">Explore</span>
+                </a>
+                <a href="movies.html" class="navbar-link">
+                    <i class='bx bx-tv'></i>
+                    <span class="nav-link-title">Movies</span>
+                </a>
+                <a href="favorites.html" class="navbar-link">
+                    <i class='bx bx-heart'></i>
+                    <span class="nav-link-title">Favourite</span>
+                </a>
+            </div>
+        </div>
+    </header><br><br><br>
+    <section class="featured-movie-container">
+        <div class="featured-movie-banner">
+            <!-- Backdrop Image - Replace with your high-quality image -->
+            <div class="movie-backdrop">
+                <img src="play-page/mission5.jpeg" alt="Gemini Man Banner" class="backdrop-img">
+                <div class="backdrop-overlay"></div>
+
+                <!-- Release Date Indicator -->
+                <div class="release-date">
+                    <span class="month">MAY</span>
+                    <span class="day">23</span>
+                </div>
+            </div>
+
+            <div class="movie-content">
+                <div class="movie-badge">coming soon</div>
+
+                <h1 class="movie-titles">Mission: Impossible</h1>
+                <p class="movie-tagline">The Final Reckoning</p>
+
+                <a href="https://youtu.be/fsQgc9pCyDU"><button class="play-trailer-btn">
+                        <i class='bx bx-play'></i> PLAY TRAILER
+                    </button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advetisement -->
+    <div class="ad-container">
+        <div class="ad-content">
+            <span>ADVERTISE HERE</span>
+            <i class='bx bx-right-arrow ad-arrow'></i>
+        </div>
+    </div>
+    <!--Popular section start-->
+    <section class="popular container" id="popular">
+        <!--heading-->
+        <div class="heading">
+            <h2 class="heading-title">Popular Movies</h2>
+            <div class="swiper-btn">
+                <div class="swiper-button-prev">
+                    <i class='bx bx-chevron-left'></i> <!-- Add icon inside -->
+                </div>
+                <div class="swiper-button-next">
+                    <i class='bx bx-chevron-right'></i> <!-- Add icon inside -->
+                </div>
+            </div>
+        </div>
+        <!--Content-->
+        <div class="popular-content swiper">
+            <div class="swiper-wrapper">
+                <!--Movie Box 1-->
+                <div class="swiper-slide">
+                    <div class="movie-box">
+                        <img src="play-page/nezha 2.jpg" alt="" class="movie-box-img">
+                        <div class="box-text">
+                            <h2 class="movie-title">Ne Zha 2</h2>
+                            <span class="movie-type">Animation</span>
+                            <a href="#" class="watch-btn play-btn">
+                                <i class='bx bx-right-arrow'></i>
+                            </a>
+                            <button class="favorite-btn" data-movie-id="0">
+                                <i class='bx bx-heart'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Movie Box 2-->
+                <div class="swiper-slide">
+                    <div class="movie-box">
+                        <img src="img/minecraft.jpeg" alt="" class="movie-box-img">
+                        <div class="box-text">
+                            <h2 class="movie-title">minecraft</h2>
+                            <span class="movie-type">Action/Adventure</span>
+                            <a href="minecraft.html" class="watch-btn play-btn">
+                                <i class='bx bx-right-arrow'></i>
+                            </a>
+                            <button class="favorite-btn" data-movie-id="1">
+                                <i class='bx bx-heart'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Movie Box 3-->
+                <div class="swiper-slide">
+                    <div class="movie-box">
+                        <img src="img/Captain1.jpeg" alt="" class="movie-box-img">
+                        <div class="box-text">
+                            <h2 class="movie-title">Captain America: Brave New World</h2>
+                            <span class="movie-type">Action</span>
+                            <a href="captain.html" class="watch-btn play-btn">
+                                <i class='bx bx-right-arrow'></i>
+                            </a>
+                            <button class="favorite-btn" data-movie-id="2">
+                                <i class='bx bx-heart'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Movie Box 4-->
+                <div class="swiper-slide">
+                    <div class="movie-box">
+                        <img src="img/popular-movie-5.avif" alt="" class="movie-box-img">
+                        <div class="box-text">
+                            <h2 class="movie-title">Black Bag</h2>
+                            <span class="movie-type">Action</span>
+                            <a href="#" class="watch-btn play-btn">
+                                <i class='bx bx-right-arrow'></i>
+                            </a>
+                            <button class="favorite-btn" data-movie-id="3">
+                                <i class='bx bx-heart'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Movie Box 5-->
+                <div class="swiper-slide">
+                    <div class="movie-box">
+                        <img src="img/popular-movie-6.jpg" alt="" class="movie-box-img">
+                        <div class="box-text">
+                            <h2 class="movie-title">The Assessment</h2>
+                            <span class="movie-type">sci-fi/Drama</span>
+                            <a href="#" class="watch-btn play-btn">
+                                <i class='bx bx-right-arrow'></i>
+                            </a>
+                            <button class="favorite-btn" data-movie-id="4">
+                                <i class='bx bx-heart'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Movie Box 6-->
+                <div class="swiper-slide">
+                    <div class="movie-box">
+                        <img src="img/popular-movie-9.webp" alt="" class="movie-box-img">
+                        <div class="box-text">
+                            <h2 class="movie-title">Snow White</h2>
+                            <span class="movie-type">A live-action</span>
+                            <a href="#" class="watch-btn play-btn">
+                                <i class='bx bx-right-arrow'></i>
+                            </a>
+                            <button class="favorite-btn" data-movie-id="5">
+                                <i class='bx bx-heart'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Movie Box 7-->
+                <div class="swiper-slide">
+                    <div class="movie-box">
+                        <img src="img/popular-movie-8.jpg" alt="" class="movie-box-img">
+                        <div class="box-text">
+                            <h2 class="movie-title">One of Them Days</h2>
+                            <span class="movie-type">Drama</span>
+                            <a href="#" class="watch-btn play-btn">
+                                <i class='bx bx-right-arrow'></i>
+                            </a>
+                            <button class="favorite-btn" data-movie-id="6">
+                                <i class='bx bx-heart'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Popular section End-->
+
+    <!--Next Page-->
+    <div class="next-page">
+        <a href="next.html" class="next-btn">Next Page</a>
+    </div><br>
+    <!-- Copyright -->
+    <!-- Replace your current copyright div with this -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <!-- Combined Contact & Social Section -->
+            <div class="footer-section combined-section">
+                <div class="contact-part">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class='bx bx-envelope'></i> tuyizereomega@gmail.com</li>
+                        <li><i class='bx bx-phone'></i> +250 793 748 035</li>
+                    </ul>
+                </div>
+
+                <div class="social-part">
+                    <h3 class="footer-title">Follow Us</h3>
+                    <div class="social-media">
+                        <a href="https://www.facebook.com/profile.php?id=61563800529190&ref=ig_profile_ac"
+                            class="social-link"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" class="social-link"><i class='bx bxl-twitter'></i></a>
+                        <a href="https://www.instagram.com/_omeega._/" class="social-link"><i
+                                class='bx bxl-instagram'></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="movies.html">Movies</a></li>
+                    <li><a href="popular.html">Trending</a></li>
+                    <li><a href="favorites.html">Favorites</a></li>
+                </ul>
+            </div>
+
+            <!-- WhatsApp Button -->
+            <div class="footer-section whatsapp-section">
+                <a href="https://wa.me/250793748035" class="whatsapp-btn" target="_blank">
+                    <i class='bx bxl-whatsapp'></i> Chat Now
+                </a>
+                <p class="footer-credits">Designed by OmegaNation</p>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="copyright">
+            <p>&copy; 2025 MovieNation. All Rights Reserved</p>
+        </div>
+    </footer>
+    <!--link swiper JS-->
+    <script src="js/swiper-bundle.min.js"></script>
+    <!--link to JS-->
+    <script src="js/main.js"></script>
+    <!-- Add before </body> -->
+</body>
+
+</html>
