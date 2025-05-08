@@ -30,6 +30,19 @@ html::-webkit-scrollbar-thumb {
 
 }
 
+.footer-linkss{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.termslink{
+    color: var(--text-color);
+    font-size: 0.8rem;
+    text-decoration: underline;
+}
+
 /*selection color*/
 ::selection {
     background: var(--main-color);
