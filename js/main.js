@@ -641,3 +641,141 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// Check if user has previously closed the message
+if (!localStorage.getItem('socialMessageClosed')) {
+    document.querySelector('.social-message-bar').style.display = 'flex';
+}
+
+// Add close button functionality if desired
+function closeSocialMessage() {
+    document.querySelector('.social-message-bar').style.display = 'none';
+    localStorage.setItem('socialMessageClosed', 'true');
+}
+
+// Add to your main.js
+const searchInput = document.getElementById('search-input');
+const searchPlaceholders = ["Search for Avengers...", "Find horror movies...", "Discover new releases..."];
+let currentPlaceholder = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeWriter() {
+    const text = searchPlaceholders[currentPlaceholder];
+
+    if (isDeleting) {
+        searchInput.placeholder = text.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        searchInput.placeholder = text.substring(0, charIndex + 1);
+        charIndex++;
+    }
+
+    if (!isDeleting && charIndex === text.length) {
+        isDeleting = true;
+        setTimeout(typeWriter, 2000);
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        currentPlaceholder = (currentPlaceholder + 1) % searchPlaceholders.length;
+        setTimeout(typeWriter, 500);
+    } else {
+        setTimeout(typeWriter, isDeleting ? 50 : 100);
+    }
+}
+
+typeWriter();
+
+document.addEventListener('DOMContentLoaded', function () {
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const colors = ['#ffb43a', '#ff5e5e', '#5e9cff', '#ffffff'];
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 3 + 1;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            this.speedX = Math.random() * 2 - 1;
+            this.speedY = Math.random() * 2 - 1;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+    }
+
+    function init() {
+        for (let i = 0; i < 100; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            // Connect particles
+            for (let j = i; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 100) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+
+    window.addEventListener('resize', function () {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+
+    // Make particles interactive
+    canvas.addEventListener('mousemove', function (e) {
+        for (let i = 0; i < 10; i++) {
+            if (particles[i]) {
+                particles[i].x = e.clientX + (Math.random() * 40 - 20);
+                particles[i].y = e.clientY + (Math.random() * 40 - 20);
+            }
+        }
+    });
+});
+
+window.addEventListener('scroll', function () {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('watchProgress').style.width = scrolled + '%';
+});
