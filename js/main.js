@@ -779,3 +779,20 @@ window.addEventListener('scroll', function () {
     const scrolled = (winScroll / height) * 100;
     document.getElementById('watchProgress').style.width = scrolled + '%';
 });
+
+const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+let estimatedDelay = 2000;
+
+if (connection) {
+    if (connection.effectiveType === '4g') estimatedDelay = 1000;
+    else if (connection.effectiveType === '3g') estimatedDelay = 3000;
+    else if (connection.effectiveType === '2g') estimatedDelay = 5000;
+}
+
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        const loader = document.getElementById("loader");
+        loader.style.opacity = "0";
+        setTimeout(() => loader.style.display = "none", 500); // Smooth fade out
+    }, estimatedDelay);
+});
