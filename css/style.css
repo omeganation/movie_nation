@@ -19,30 +19,6 @@ body {
     --text-color: #fcfeff;
 }
 
-#loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #1e1e2a;
-    /* background color */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-/* Simple animated spinner */
-#loader::after {
-    content: "";
-    width: 50px;
-    height: 50px;
-    border: 5px solid #fcfeff;
-    border-top-color: #ffb43a;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
 
 @keyframes spin {
     to {
