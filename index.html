@@ -42,9 +42,16 @@
                 <i class='bx bx-search'></i>
             </div>
             <!-- User -->
-            <a href="index.html" class="user">
-                <img src="img/fav-icon.png" alt="" class="user-img">
-            </a>
+            <!-- Replace the current user <a> tag with this: -->
+            <div class="user-auth">
+                <div class="auth-buttons">
+                    <a href="login.html"><button id="loginBtn" class="auth-btn">Login</button></a>
+                    <a href="signup.html"><button id="signupBtn" class="auth-btn">Sign Up</button></a>
+                </div>
+                <a href="#" class="user logged-in-user" style="display:none;">
+                    <img src="img/fav-icon.png" alt="" class="user-img">
+                </a>
+            </div>
             <!-- NavBar-->
             <div class="navbar">
                 <a href="index.html" class="navbar-link nav-active">
