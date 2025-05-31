@@ -42,21 +42,15 @@
                 <i class='bx bx-search'></i>
             </div>
             <!-- User -->
-            
             <div class="user-auth">
-                <!-- Replace the current user-auth div with this: -->
-                <div class="user-auth">
-                    <div class="auth-buttons" id="authButtons">
-                        <a href="login.html"><button id="loginBtn" class="auth-btn">Login</button></a>
-                        <a href="signup.html"><button id="signupBtn" class="auth-btn">Sign Up</button></a>
-                    </div>
-                    <a href="profile.html" class="user logged-in-user" id="loggedInUser" style="display:none;">
-                        <img src="" alt="User Profile" class="user-img" id="userProfileImg">
-                    </a>
+                <div class="auth-buttons" id="authButtons">
+                    <a href="login.html"><button id="loginBtn" class="auth-btn">Login</button></a>
+                    <a href="signup.html"><button id="signupBtn" class="auth-btn">Sign Up</button></a>
                 </div>
-                <a href="#" class="user logged-in-user" style="display:none;">
-                    <img src="img/fav-icon.png" alt="" class="user-img">
-                </a>
+                <div class="logged-in-user" id="loggedInUser" style="display:none;">
+                    <img src="img/fav-icon.png" alt="" class="user-img" id="userAvatar">
+                    <button id="logoutBtn" class="auth-btn">Log Out</button>
+                </div>
             </div>
             <!-- NavBar-->
             <div class="navbar">
@@ -829,6 +823,32 @@ font-size: 0.9rem;
             });
         }
 
+        document.addEventListener('DOMContentLoaded', function () {
+            const authButtons = document.getElementById('authButtons');
+            const loggedInUser = document.getElementById('loggedInUser');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const userAvatar = document.getElementById('userAvatar');
+
+            // Check login status
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                authButtons.style.display = 'none';
+                loggedInUser.style.display = 'flex';
+
+                // Load user avatar if available
+                const savedAvatar = localStorage.getItem('userAvatar');
+                if (savedAvatar) {
+                    userAvatar.src = savedAvatar;
+                }
+            }
+
+            // Logout functionality
+            logoutBtn.addEventListener('click', function () {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userAvatar');
+                localStorage.removeItem('username');
+                window.location.reload();
+            });
+        });
     </script>
 
 
@@ -848,33 +868,6 @@ font-size: 0.9rem;
         </button>
     </div>
 
-    <script>
-        // Check login status and update UI
-        document.addEventListener('DOMContentLoaded', function () {
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            const authButtons = document.getElementById('authButtons');
-            const loggedInUser = document.getElementById('loggedInUser');
-            const userProfileImg = document.getElementById('userProfileImg');
-
-            if (isLoggedIn) {
-                // User is logged in
-                authButtons.style.display = 'none';
-                loggedInUser.style.display = 'flex';
-
-                // Set user avatar if available
-                const avatar = localStorage.getItem('userAvatar');
-                if (avatar) {
-                    userProfileImg.src = avatar;
-                } else {
-                    userProfileImg.src = 'img/default-avatar.png'; // Default avatar image
-                }
-            } else {
-                // User is not logged in
-                authButtons.style.display = 'flex';
-                loggedInUser.style.display = 'none';
-            }
-        });
-    </script>
 </body>
 
 </html>
