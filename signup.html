@@ -1,260 +1,458 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up - MovieNation</title>
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieNation - Sign Up</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        :root {
-            --main-color: #ffb43a;
-            --hover-color: #ffc85a;
-            --bg-color: #1e1e2a;
-            --form-color: #2d2e37;
-            --text-color: #ffffff;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        /* Base styles matching your movie site */
         body {
             font-family: 'Poppins', sans-serif;
-            background: radial-gradient(circle at top left, #1e1e2a 0%, #111118 100%);
-            color: var(--text-color);
+            background-color: #1e1e2a;
+            color: #fcfeff;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            padding: 1rem;
+            min-height: 100vh;
         }
-
-        .signup-box {
-            background-color: var(--form-color);
-            padding: 2.8rem 2rem;
-            border-radius: 16px;
+        
+        /* Sign Up Container */
+        .signup-container {
+            background-color: #2d2e37;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             width: 100%;
-            max-width: 420px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            animation: popUp 1s ease forwards;
-            opacity: 0;
-            transform: scale(0.95) translateY(30px);
+            max-width: 450px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
         }
-
-        @keyframes popUp {
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .signup-box h2 {
+        
+        /* Header */
+        .signup-header {
             text-align: center;
-            color: var(--main-color);
-            margin-bottom: 0.3rem;
-            font-size: 1.9rem;
+            margin-bottom: 30px;
         }
-
-        .signup-box p {
-            text-align: center;
-            color: #bbb;
+        
+        .signup-header h1 {
+            color: #ffb43a;
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        
+        .signup-header p {
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
-            margin-bottom: 2rem;
         }
-
+        
+        /* Form Elements */
         .form-group {
-            margin-bottom: 1.3rem;
+            margin-bottom: 20px;
             position: relative;
         }
-
+        
         .form-group label {
-            font-size: 0.85rem;
             display: block;
-            margin-bottom: 0.3rem;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
         }
-
-        .form-group i {
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
             position: absolute;
-            left: 14px;
+            left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #aaa;
-            font-size: 1.2rem;
-            pointer-events: none;
+            color: rgba(255, 255, 255, 0.6);
         }
-
-        .form-group input {
+        
+        .input-with-icon input {
             width: 100%;
-            padding: 12px 15px 12px 44px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            background-color: #1e1e2a;
-            color: var(--text-color);
+            padding: 12px 15px 12px 45px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: #fcfeff;
             font-size: 0.95rem;
-            transition: 0.35s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border: 1px solid var(--main-color);
-            box-shadow: 0 0 15px rgba(255, 180, 58, 0.5);
-        }
-
-        .submit-btn {
-            background-color: var(--main-color);
-            border: none;
-            padding: 12px;
-            width: 100%;
-            font-weight: bold;
-            color: #1e1e2a;
-            cursor: pointer;
-            border-radius: 8px;
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
             transition: all 0.3s ease;
         }
-
-        .submit-btn .text {
-            display: inline-block;
-            transition: opacity 0.3s ease;
+        
+        .input-with-icon input:focus {
+            outline: none;
+            border-color: #ffb43a;
+            box-shadow: 0 0 0 3px rgba(255, 180, 58, 0.2);
         }
-
-        .submit-btn.loading .text {
-            opacity: 0;
+        
+        /* Password Strength */
+        .password-strength {
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
-        .submit-btn .spinner {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 22px;
-            height: 22px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top-color: #1e1e2a;
+        
+        .strength-bar {
+            height: 4px;
+            flex-grow: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .strength-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: #ff5e5e;
+            transition: width 0.3s ease, background 0.3s ease;
+        }
+        
+        .strength-text {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Avatar Upload */
+        .avatar-upload {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .avatar-preview {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid #ffb43a;
+        }
+        
+        .avatar-preview i {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .avatar-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        #avatarInput {
             display: none;
         }
-
-        .submit-btn.loading .spinner {
-            display: block;
-        }
-
-        @keyframes spin {
-            to {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
-        }
-
-        .auth-footer {
-            margin-top: 1.5rem;
-            text-align: center;
+        
+        .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 180, 58, 0.2);
+            color: #ffb43a;
+            padding: 8px 15px;
+            border-radius: 6px;
             font-size: 0.85rem;
-            color: #ccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-
-        .auth-footer a {
-            color: var(--main-color);
+        
+        .upload-btn:hover {
+            background: rgba(255, 180, 58, 0.3);
+        }
+        
+        /* Submit Button */
+        .signup-btn {
+            width: 100%;
+            padding: 14px;
+            background: #ffb43a;
+            color: #1e1e2a;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .signup-btn:hover {
+            background: #ffa725;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 180, 58, 0.4);
+        }
+        
+        /* Footer Links */
+        .signup-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        .signup-footer a {
+            color: #ffb43a;
             text-decoration: none;
             font-weight: 500;
         }
-
-        .auth-footer a:hover {
+        
+        .signup-footer a:hover {
             text-decoration: underline;
         }
-
-        /* Responsive Queries */
-        @media (max-width: 480px) {
-            .signup-box {
-                padding: 2rem 1.2rem;
-            }
-
-            .form-group i {
-                left: 10px;
-            }
-
-            .form-group input {
-                padding-left: 38px;
-            }
+        
+        /* Error Messages */
+        .error-message {
+            color: #ff5e5e;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
         }
-
-        @media (max-width: 375px) {
-            .signup-box h2 {
-                font-size: 1.5rem;
-            }
-
-            .submit-btn {
-                font-size: 0.9rem;
-                padding: 10px;
-            }
+        
+        /* Toggle Password Visibility */
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+        }
+        
+        .toggle-password:hover {
+            color: #ffb43a;
         }
     </style>
 </head>
-
 <body>
-
-    <div class="signup-box">
-        <h2>Create Account</h2>
-        <p>Join to save favorites and get recommendations</p>
+    <div class="signup-container">
+        <div class="signup-header">
+            <h1>Join MovieNation</h1>
+            <p>Create your account to save favorites and get recommendations</p>
+        </div>
+        
         <form id="signupForm">
             <div class="form-group">
                 <label for="username">Username</label>
-                <i class='bx bx-user'></i>
-                <input type="text" id="username" placeholder="username" required>
+                <div class="input-with-icon">
+                    <i class='bx bx-user'></i>
+                    <input type="text" id="username" placeholder="movielover123" required>
+                </div>
+                <span class="error-message" id="username-error"></span>
             </div>
-
+            
             <div class="form-group">
                 <label for="email">Email</label>
-                <i class='bx bx-envelope'></i>
-                <input type="email" id="email" placeholder="your@email.com" required>
+                <div class="input-with-icon">
+                    <i class='bx bx-envelope'></i>
+                    <input type="email" id="email" placeholder="your@email.com" required>
+                </div>
+                <span class="error-message" id="email-error"></span>
             </div>
-
+            
             <div class="form-group">
                 <label for="password">Password</label>
-                <i class='bx bx-lock-alt'></i>
-                <input type="password" id="password" placeholder="••••••••" required>
+                <div class="input-with-icon">
+                    <i class='bx bx-lock-alt'></i>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                    <i class='bx bx-hide toggle-password' onclick="togglePassword()"></i>
+                </div>
+                <div class="password-strength">
+                    <div class="strength-bar">
+                        <div class="strength-bar-fill" id="strengthBar"></div>
+                    </div>
+                    <span class="strength-text" id="strengthText">Weak</span>
+                </div>
+                <span class="error-message" id="password-error"></span>
             </div>
-
+            
             <div class="form-group">
-                <label for="confirm">Confirm Password</label>
-                <i class='bx bx-lock'></i>
-                <input type="password" id="confirm" placeholder="••••••••" required>
+                <label for="confirm-password">Confirm Password</label>
+                <div class="input-with-icon">
+                    <i class='bx bx-lock-alt'></i>
+                    <input type="password" id="confirm-password" placeholder="••••••••" required>
+                </div>
+                <span class="error-message" id="confirm-error"></span>
             </div>
-
-            <button type="submit" class="submit-btn" id="submitBtn">
-                <span class="text">Create Account</span>
-                <span class="spinner"></span>
-            </button>
-
-            <div class="auth-footer">
-                Already have an account? <a href="login.html">Sign In</a>
+            
+            <div class="avatar-upload">
+                <div class="avatar-preview" id="avatarPreview">
+                    <i class='bx bx-user'></i>
+                </div>
+                <input type="file" id="avatarInput" accept="image/*">
+                <label for="avatarInput" class="upload-btn">
+                    <i class='bx bx-cloud-upload'></i> Choose Profile Picture
+                </label>
+            </div>
+            
+            <button type="submit" class="signup-btn">Create Account</button>
+            
+            <div class="signup-footer">
+                Already have an account? <a href="#" id="loginLink">Sign In</a>
             </div>
         </form>
     </div>
 
     <script>
-        const form = document.getElementById('signupForm');
-        const submitBtn = document.getElementById('submitBtn');
-
-        form.addEventListener('submit', function (e) {
+        // Password strength indicator
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.getElementById('strengthBar');
+            const strengthText = document.getElementById('strengthText');
+            
+            let strength = 0;
+            
+            // Length check
+            if (password.length >= 8) strength += 1;
+            if (password.length >= 12) strength += 1;
+            
+            // Complexity checks
+            if (/[A-Z]/.test(password)) strength += 1;
+            if (/[0-9]/.test(password)) strength += 1;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+            
+            // Update UI
+            updateStrengthIndicator(strength);
+        });
+        
+        function updateStrengthIndicator(strength) {
+            const strengthBar = document.getElementById('strengthBar');
+            const strengthText = document.getElementById('strengthText');
+            
+            let width = 0;
+            let color = '';
+            let text = '';
+            
+            switch(strength) {
+                case 0:
+                case 1:
+                    width = 25;
+                    color = '#ff5e5e';
+                    text = 'Weak';
+                    break;
+                case 2:
+                    width = 50;
+                    color = '#ffb43a';
+                    text = 'Fair';
+                    break;
+                case 3:
+                    width = 75;
+                    color = '#ffb43a';
+                    text = 'Good';
+                    break;
+                case 4:
+                case 5:
+                    width = 100;
+                    color = '#2ecc71';
+                    text = 'Strong';
+                    break;
+            }
+            
+            strengthBar.style.width = width + '%';
+            strengthBar.style.backgroundColor = color;
+            strengthText.textContent = text;
+            strengthText.style.color = color;
+        }
+        
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const icon = document.querySelector('.toggle-password');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.remove('bx-hide');
+                icon.classList.add('bx-show');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.remove('bx-show');
+                icon.classList.add('bx-hide');
+            }
+        }
+        
+        // Avatar preview
+        document.getElementById('avatarInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('avatarPreview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    preview.innerHTML = `<img src="${event.target.result}" alt="Profile">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Form validation
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
-            submitBtn.classList.add('loading');
-
-            setTimeout(() => {
-                submitBtn.classList.remove('loading');
-                alert('✅ Account created successfully!');
-                form.reset();
-            }, 3000); // Simulate 3s loading
+            
+            // Get form values
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            let isValid = true;
+            
+            // Validate username
+            if (username.length < 3) {
+                showError('username-error', 'Username must be at least 3 characters');
+                isValid = false;
+            }
+            
+            // Validate email
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showError('email-error', 'Please enter a valid email');
+                isValid = false;
+            }
+            
+            // Validate password
+            if (password.length < 8) {
+                showError('password-error', 'Password must be at least 8 characters');
+                isValid = false;
+            }
+            
+            // Validate password match
+            if (password !== confirmPassword) {
+                showError('confirm-error', 'Passwords do not match');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Form is valid - submit data
+                alert('Account created successfully! Welcome to MovieNation');
+                // In a real app, you would submit to your backend here
+                // this.submit();
+            }
+        });
+        
+        function showError(id, message) {
+            const element = document.getElementById(id);
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+        
+        // Login link
+        document.getElementById('loginLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Login form would appear here');
+            // In your implementation, you would show the login form
         });
     </script>
-
 </body>
-
 </html>
