@@ -390,181 +390,201 @@
     </div>
 
     <script>
-        // Password strength indicator
-        document.getElementById('password').addEventListener('input', function() {
-            const password = this.value;
-            const strengthBar = document.getElementById('strengthBar');
-            const strengthText = document.getElementById('strengthText');
-            
-            let strength = 0;
-            
-            // Length check
-            if (password.length >= 8) strength += 1;
-            if (password.length >= 12) strength += 1;
-            
-            // Complexity checks
-            if (/[A-Z]/.test(password)) strength += 1;
-            if (/[0-9]/.test(password)) strength += 1;
-            if (/[^A-Za-z0-9]/.test(password)) strength += 1;
-            
-            // Update UI
-            updateStrengthIndicator(strength);
+    // Password strength indicator
+    document.getElementById('password').addEventListener('input', function() {
+        const password = this.value;
+        const strengthBar = document.getElementById('strengthBar');
+        const strengthText = document.getElementById('strengthText');
+        
+        let strength = 0;
+        
+        // Length check
+        if (password.length >= 8) strength += 1;
+        if (password.length >= 12) strength += 1;
+        
+        // Complexity checks
+        if (/[A-Z]/.test(password)) strength += 1;
+        if (/[0-9]/.test(password)) strength += 1;
+        if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+        
+        // Update UI
+        updateStrengthIndicator(strength);
+    });
+    
+    function updateStrengthIndicator(strength) {
+        const strengthBar = document.getElementById('strengthBar');
+        const strengthText = document.getElementById('strengthText');
+        
+        let width = 0;
+        let color = '';
+        let text = '';
+        
+        switch(strength) {
+            case 0:
+            case 1:
+                width = 25;
+                color = '#ff5e5e';
+                text = 'Weak';
+                break;
+            case 2:
+                width = 50;
+                color = '#ffb43a';
+                text = 'Fair';
+                break;
+            case 3:
+                width = 75;
+                color = '#ffb43a';
+                text = 'Good';
+                break;
+            case 4:
+            case 5:
+                width = 100;
+                color = '#2ecc71';
+                text = 'Strong';
+                break;
+        }
+        
+        strengthBar.style.width = width + '%';
+        strengthBar.style.backgroundColor = color;
+        strengthText.textContent = text;
+        strengthText.style.color = color;
+    }
+    
+    // Toggle password visibility
+    function togglePassword() {
+        const passwordField = document.getElementById('password');
+        const toggleBtn = document.querySelector('.toggle-password');
+        
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            toggleBtn.innerHTML = '<i class="bx bx-hide"></i>';
+            toggleBtn.setAttribute('aria-label', 'Hide password');
+        } else {
+            passwordField.type = 'password';
+            toggleBtn.innerHTML = '<i class="bx bx-show"></i>';
+            toggleBtn.setAttribute('aria-label', 'Show password');
+        }
+    }
+    
+    // Avatar preview
+    document.getElementById('avatarInput').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const preview = document.getElementById('avatarPreview');
+        
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                preview.innerHTML = `<img src="${event.target.result}" alt="Profile preview">`;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+    
+    // Form submission
+    document.getElementById('signupForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        const avatarFile = document.getElementById('avatarInput').files[0];
+        
+        // Reset errors
+        document.querySelectorAll('.error-message').forEach(el => {
+            el.style.display = 'none';
+            el.textContent = '';
         });
         
-        function updateStrengthIndicator(strength) {
-            const strengthBar = document.getElementById('strengthBar');
-            const strengthText = document.getElementById('strengthText');
-            
-            let width = 0;
-            let color = '';
-            let text = '';
-            
-            switch(strength) {
-                case 0:
-                case 1:
-                    width = 25;
-                    color = '#ff5e5e';
-                    text = 'Weak';
-                    break;
-                case 2:
-                    width = 50;
-                    color = '#ffb43a';
-                    text = 'Fair';
-                    break;
-                case 3:
-                    width = 75;
-                    color = '#ffb43a';
-                    text = 'Good';
-                    break;
-                case 4:
-                case 5:
-                    width = 100;
-                    color = '#2ecc71';
-                    text = 'Strong';
-                    break;
-            }
-            
-            strengthBar.style.width = width + '%';
-            strengthBar.style.backgroundColor = color;
-            strengthText.textContent = text;
-            strengthText.style.color = color;
+        let isValid = true;
+        
+        // Validate username
+        if (username.length < 3) {
+            showError('username-error', 'Username must be at least 3 characters');
+            isValid = false;
+        } else if (username.length > 20) {
+            showError('username-error', 'Username must be less than 20 characters');
+            isValid = false;
         }
         
-        // Toggle password visibility
-        function togglePassword() {
-            const passwordField = document.getElementById('password');
-            const icon = document.querySelector('.toggle-password i');
-            
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                icon.classList.remove('bx-hide');
-                icon.classList.add('bx-show');
-                icon.setAttribute('aria-label', 'Hide password');
-            } else {
-                passwordField.type = 'password';
-                icon.classList.remove('bx-show');
-                icon.classList.add('bx-hide');
-                icon.setAttribute('aria-label', 'Show password');
-            }
+        // Validate email
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showError('email-error', 'Please enter a valid email');
+            isValid = false;
         }
         
-        // Avatar preview
-        document.getElementById('avatarInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const preview = document.getElementById('avatarPreview');
-            
-            if (file) {
+        // Validate password
+        if (password.length < 8) {
+            showError('password-error', 'Password must be at least 8 characters');
+            isValid = false;
+        }
+        
+        // Validate password match
+        if (password !== confirmPassword) {
+            showError('confirm-error', 'Passwords do not match');
+            isValid = false;
+        }
+        
+        if (!isValid) return;
+        
+        // Show loading state
+        const submitBtn = document.querySelector('.signup-btn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Creating Account...';
+        
+        try {
+            // In a real app, you would upload to your backend here
+            // For this demo, we'll just store in localStorage
+            if (avatarFile) {
                 const reader = new FileReader();
-                reader.onload = function(event) {
-                    preview.innerHTML = `<img src="${event.target.result}" alt="Profile preview">`;
+                reader.onload = function(e) {
+                    localStorage.setItem('newUserAvatar', e.target.result);
+                    localStorage.setItem('newUsername', username);
+                    window.location.href = 'welcome.html';
                 }
-                reader.readAsDataURL(file);
+                reader.readAsDataURL(avatarFile);
+            } else {
+                localStorage.setItem('newUsername', username);
+                window.location.href = 'welcome.html';
             }
-        });
-        
-        // Form validation
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const username = document.getElementById('username').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            
-            // Reset errors
-            document.querySelectorAll('.error-message').forEach(el => {
-                el.style.display = 'none';
-                el.textContent = '';
-            });
-            
-            let isValid = true;
-            
-            // Validate username
-            if (username.length < 3) {
-                showError('username-error', 'Username must be at least 3 characters');
-                isValid = false;
-            } else if (username.length > 20) {
-                showError('username-error', 'Username must be less than 20 characters');
-                isValid = false;
-            }
-            
-            // Validate email
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                showError('email-error', 'Please enter a valid email');
-                isValid = false;
-            }
-            
-            // Validate password
-            if (password.length < 8) {
-                showError('password-error', 'Password must be at least 8 characters');
-                isValid = false;
-            }
-            
-            // Validate password match
-            if (password !== confirmPassword) {
-                showError('confirm-error', 'Passwords do not match');
-                isValid = false;
-            }
-            
-            if (isValid) {
-                // Form is valid - submit data
-                alert('Account created successfully! Welcome to MovieNation');
-                // In a real app, you would submit to your backend here
-                // this.submit();
-            }
-        });
-        
-        function showError(id, message) {
-            const element = document.getElementById(id);
-            element.textContent = message;
-            element.style.display = 'block';
-            // Focus the first error field
-            if (!document.querySelector('[aria-invalid="true"]')) {
-                const input = document.getElementById(id.replace('-error', ''));
-                input.focus();
-                input.setAttribute('aria-invalid', 'true');
-            }
+        } catch (error) {
+            showError('form-error', 'An error occurred. Please try again.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Create Account';
         }
-        
-        // Clear aria-invalid when user starts typing
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', function() {
-                this.removeAttribute('aria-invalid');
-                const errorId = this.id + '-error';
-                const errorElement = document.getElementById(errorId);
-                if (errorElement) {
-                    errorElement.style.display = 'none';
-                }
-            });
+    });
+    
+    function showError(id, message) {
+        const element = document.getElementById(id);
+        element.textContent = message;
+        element.style.display = 'block';
+        // Focus the first error field
+        if (!document.querySelector('[aria-invalid="true"]')) {
+            const input = document.getElementById(id.replace('-error', ''));
+            input.focus();
+            input.setAttribute('aria-invalid', 'true');
+        }
+    }
+    
+    // Clear aria-invalid when user starts typing
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', function() {
+            this.removeAttribute('aria-invalid');
+            const errorId = this.id + '-error';
+            const errorElement = document.getElementById(errorId);
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
         });
-        
-        // Login link
-        document.getElementById('loginLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Login form would appear here');
-            // In your implementation, you would show the login form
-        });
-    </script>
+    });
+    
+    // Login link
+    document.getElementById('loginLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Login form would appear here');
+    });
+</script>
+
 </body>
 </html>
