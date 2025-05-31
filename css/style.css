@@ -210,7 +210,51 @@ body {
     }
 }
 
+.user-auth {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-btn {
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#loginBtn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #ffb43a;
+}
+
+#signupBtn {
+    background: #ffb43a;
+    color: #1e1e2a;
+}
+
+.logged-in-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.user-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffb43a;
+}
 
 @keyframes spin {
     to {
