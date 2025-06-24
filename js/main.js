@@ -773,3 +773,36 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Popular Movies Swiper
+    const popularSwiper = new Swiper('.popular-content', {
+        slidesPerView: 'auto',
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.popular-next',
+            prevEl: '.popular-prev',
+        },
+        breakpoints: {
+            320: { slidesPerView: 2, spaceBetween: 10 },
+            480: { slidesPerView: 3, spaceBetween: 15 },
+            640: { slidesPerView: 4, spaceBetween: 20 },
+            1024: { slidesPerView: 5, spaceBetween: 25 }
+        }
+    });
+
+    // Top Trending Worldwide Swiper
+    const trendingSwiper = new Swiper('.trending-content', {
+        slidesPerView: 'auto',
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.trending-next',
+            prevEl: '.trending-prev',
+        },
+        breakpoints: {
+            320: { slidesPerView: 2, spaceBetween: 10 },
+            480: { slidesPerView: 3, spaceBetween: 15 },
+            640: { slidesPerView: 4, spaceBetween: 20 },
+            1024: { slidesPerView: 5, spaceBetween: 25 }
+        }
+    });
+});

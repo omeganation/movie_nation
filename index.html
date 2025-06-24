@@ -42,7 +42,7 @@
                 <i class='bx bx-search'></i>
             </div>
             <!-- User -->
-            
+
             <!-- NavBar-->
             <div class="navbar">
                 <a href="index.html" class="navbar-link nav-active">
@@ -123,6 +123,23 @@
         <!--Content-->
         <div class="popular-content swiper">
             <div class="swiper-wrapper">
+                <!--Movie Box 00-->
+                <div class="swiper-slide">
+                    <div class="movie-box">
+                        <img src="img/kesari.jpg" alt="" class="movie-box-img">
+                        <div class="box-text">
+                            <h2 class="movie-title">kesari 2</h2>
+                            <span class="movie-type">Action/Poltician</span>
+                            <a href="kesari.html" class="watch-btn play-btn">
+                                <i class='bx bx-right-arrow'></i>
+                            </a>
+                            <button class="favorite-btn" data-movie-id="00">
+                                <i class='bx bx-heart'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <!--Movie Box 1-->
                 <div class="swiper-slide">
                     <div class="movie-box">
@@ -314,6 +331,87 @@
         </div>
     </section>
 
+    <!-- Top 3 Trending Worldwide Section -->
+    <section class="top-trending container">
+        <!--heading-->
+        <div class="heading">
+            <h2 class="heading-title">Top 3 Trending Worldwide</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="top-trending-content">
+            <!-- Movie 1 -->
+            <div class="trending-card" style="--primary-color: #ffb43a; --secondary-color: #ff4d4d;">
+                <div class="trending-rank">#1</div>
+                <div class="trending-source">
+                    <i class='bx bxs-star' style="color: #f5c518;"></i>
+                    <span>IMDb</span>
+                </div>
+                <img src="img/dune.jpg" alt="Dune: Part Two" class="trending-img">
+                <div class="trending-overlay"></div>
+                <div class="trending-info">
+                    <h3 class="trending-title">Dune: Part Two</h3>
+                    <span class="trending-type">Sci-Fi/Adventure</span>
+                    <div class="trending-stats">
+                        <span class="trending-rating"><i class='bx bxs-star'></i> 8.7/10</span>
+                        <span class="trending-views"><i class='bx bx-show'></i> 25M</span>
+                    </div>
+                    <a href="https://www.imdb.com/title/tt15239678/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_dune" class="trending-btn">
+                        <i class='bx bx-play'></i> Watch Now
+                    </a>
+                </div>
+            </div>
+
+            <!-- Movie 2 -->
+            <div class="trending-card" style="--primary-color: #ffb43a; --secondary-color: #25D366;">
+                <div class="trending-rank">#2</div>
+                <div class="trending-source">
+                    <i class='bx bxl-netflix' style="color: #e50914;"></i>
+                    <span>Netflix</span>
+                </div>
+                <img src="img/furiosa.jpg" alt="Furiosa" class="trending-img">
+                <div class="trending-overlay"></div>
+                <div class="trending-info">
+                    <h3 class="trending-title">Furiosa: A Mad Max Saga</h3>
+                    <span class="trending-type">Action/Adventure</span>
+                    <div class="trending-stats">
+                        <span class="trending-rating"><i class='bx bxs-star'></i> 8.3/10</span>
+                        <span class="trending-views"><i class='bx bx-show'></i> 18M</span>
+                    </div>
+                    <a href="https://www.imdb.com/title/tt12037194/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_Furiosa%253A%2520A%2520Mad%2520Max%2520Saga" class="trending-btn">
+                        <i class='bx bx-play'></i> Watch Now
+                    </a>
+                </div>
+            </div>
+
+            <!-- Movie 3 -->
+            <div class="trending-card" style="--primary-color: #ffb43a; --secondary-color: #1DA1F2;">
+                <div class="trending-rank">#3</div>
+                <div class="trending-source">
+                    <i class='bx bxs-certification' style="color: #fa320a;"></i>
+                    <span>Rotten Tomatoes</span>
+                </div>
+                <img src="img/Deadpool&Wolverine.jpg" alt="Deadpool & Wolverine" class="trending-img">
+                <div class="trending-overlay"></div>
+                <div class="trending-info">
+                    <h3 class="trending-title">Deadpool & Wolverine</h3>
+                    <span class="trending-type">Action/Comedy</span>
+                    <div class="trending-stats">
+                        <span class="trending-rating"><i class='bx bxs-star'></i> 9.1/10</span>
+                        <span class="trending-views"><i class='bx bx-show'></i> 32M</span>
+                    </div>
+                    <a href="https://www.imdb.com/title/tt6263850/?ref_=nv_sr_srsg_0_tt_7_nm_0_in_0_q_Deadpool%2520%2526%2520Wolverine" class="trending-btn">
+                        <i class='bx bx-play'></i> Watch Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="trending-credits">
+            <p><i class='bx bx-info-circle'></i> Trending data sourced from IMDb, Netflix, and Rotten Tomatoes</p>
+        </div>
+    </section>
+
 
     <!--Popular section End-->
     <!--Movies section start-->
@@ -339,7 +437,7 @@
                 </div>
             </div>
 
-             <!--Movies Box2-->
+            <!--Movies Box2-->
             <div class="movie-box">
                 <img src="img/straw.jpg" alt="" class="movie-box-img">
                 <div class="box-text">
@@ -444,7 +542,7 @@
                 </div>
             </div>
 
-            
+
         </div>
     </section>
 
@@ -833,32 +931,7 @@ font-size: 0.9rem;
             });
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const authButtons = document.getElementById('authButtons');
-            const loggedInUser = document.getElementById('loggedInUser');
-            const logoutBtn = document.getElementById('logoutBtn');
-            const userAvatar = document.getElementById('userAvatar');
 
-            // Check login status
-            if (localStorage.getItem('isLoggedIn') === 'true') {
-                authButtons.style.display = 'none';
-                loggedInUser.style.display = 'flex';
-
-                // Load user avatar if available
-                const savedAvatar = localStorage.getItem('userAvatar');
-                if (savedAvatar) {
-                    userAvatar.src = savedAvatar;
-                }
-            }
-
-            // Logout functionality
-            logoutBtn.addEventListener('click', function () {
-                localStorage.removeItem('isLoggedIn');
-                localStorage.removeItem('userAvatar');
-                localStorage.removeItem('username');
-                window.location.reload();
-            });
-        });
     </script>
 
 
